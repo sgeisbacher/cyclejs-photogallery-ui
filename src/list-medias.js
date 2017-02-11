@@ -9,6 +9,7 @@ export function ListMedias(sources) {
     'http://lorempixel.com/253/169/sports/6',
     'http://lorempixel.com/253/169/sports/5'
   ]
+
   const vtree$ = xs.of(imageUrls)
     .map(urls =>
       div('.row', 
