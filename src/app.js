@@ -1,9 +1,13 @@
-import {div} from '@cycle/dom'
+import {div, h1} from '@cycle/dom'
 import xs from 'xstream'
 
-export function App (sources) {
+export function App(sources) {
   const vtree$ = xs.of(
-    div('My Awesome Cycle.js app')
+    div('.row', '', [
+        div('.col-lg-12', '', [
+            h1('.page-header', 'My Awesome Cycle.js app')
+        ])
+    ])
   )
   const sinks = {
     DOM: vtree$
