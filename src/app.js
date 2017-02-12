@@ -1,18 +1,16 @@
-import {div, h1} from '@cycle/dom'
+import {div, h1, button} from '@cycle/dom'
 import xs from 'xstream'
-import {ListMedias} from './list-medias.js'
-  
-const mediaUrls = [
-    'http://lorempixel.com/253/169/sports/1',
-    'http://lorempixel.com/253/169/sports/2',
-    'http://lorempixel.com/253/169/sports/3',
-    'http://lorempixel.com/253/169/sports/6',
-    'http://lorempixel.com/253/169/sports/5'
-]
+import {Gallery} from './gallery.js'
   
 export function App(sources) {
-  const gallery = ListMedias({
-    MediaUrls: xs.of(mediaUrls)
+  const gallerySelectorID$ = sources.DOM
+      .select('.nextGallery').events('click')
+      .map(ev => 1)
+      .startWith(0)
+      .fold((sum, val) => sum + val, 0);
+  
+  const gallery = Gallery({
+    ID: gallerySelectorID$
   });
 
   const galleryVDom$ = gallery.DOM;
@@ -23,6 +21,7 @@ export function App(sources) {
                 div('.col-lg-12', [
                   h1('.page-header', 'My Awesome Cycle.js app')
                 ]),
+                button('.nextGallery', ' -> '),
                 galleryVDom
               ]))
   const sinks = {

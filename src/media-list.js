@@ -1,7 +1,7 @@
 import {div, h1, a, img} from '@cycle/dom'
 import xs from 'xstream'
 
-export function ListMedias(sources) {
+export function MediaList(sources) {
   const vtree$ = sources.MediaUrls
     .map(urls =>
       div('.row', 
