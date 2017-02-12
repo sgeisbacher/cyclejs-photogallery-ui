@@ -25,18 +25,13 @@ const galleries = [
 ];
 
 export function Gallery(sources) {
-  const galleryName$ = sources.ID
+  const gallery$ = sources.ID
     .map(id => id % galleries.length)
-    .map(id => galleries[id].name)
-  const mediaList = MediaList({
-    MediaUrls: sources.ID
-      .map(id => id % galleries.length)
-      .map(id => galleries[id].urls)
-  })
+    .map(id => galleries[id])
 
   const mediaListVDom$ = mediaList.DOM;
 
-  const vtree$ = xs.combine(galleryName$, mediaListVDom$)
+  const vtree$ = xs.combine(gallery$, mediaListVDom$)
     .map(([galleryName, mediaListVDom]) =>
       div([
         h2(`Gallery "${galleryName}"`),

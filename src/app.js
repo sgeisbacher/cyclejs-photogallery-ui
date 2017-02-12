@@ -1,6 +1,6 @@
-import {div, h1, button} from '@cycle/dom'
+import {div, h1} from '@cycle/dom'
 import xs from 'xstream'
-import {Gallery} from './gallery.js'
+import {GalleryList} from './gallery-list.js'
   
 export function App(sources) {
   const gallerySelectorID$ = sources.DOM
@@ -9,20 +9,15 @@ export function App(sources) {
       .startWith(0)
       .fold((sum, val) => sum + val, 0);
   
-  const gallery = Gallery({
-    ID: gallerySelectorID$
-  });
+  const galleryListVDom$ = GalleryList({}).DOM;
 
-  const galleryVDom$ = gallery.DOM;
-
-  const vtree$ = xs.combine(galleryVDom$)
-      .map(([galleryVDom]) =>
+  const vtree$ = xs.combine(galleryListVDom$)
+      .map(([galleryListVDom]) =>
               div('.row', [
                 div('.col-lg-12', [
                   h1('.page-header', 'My Awesome Cycle.js app')
                 ]),
-                button('.nextGallery', ' -> '),
-                galleryVDom
+                galleryListVDom
               ]))
   const sinks = {
     DOM: vtree$

@@ -7,7 +7,7 @@ export function MediaList(sources) {
       div('.row', 
         urls.map(url => 
           div('.col-lg-3.col-md-4.col-xs-6.thumb', [
-            a('.thumbnail', {href: '#'}, [
+            a('.thumbnail', {attrs: {href: '#'}}, [
               img('.img-responsive', {attrs: {src: url }})
             ])
           ]))))
