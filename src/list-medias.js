@@ -2,15 +2,7 @@ import {div, h1, a, img} from '@cycle/dom'
 import xs from 'xstream'
 
 export function ListMedias(sources) {
-  const imageUrls = [
-    'http://lorempixel.com/253/169/sports/1',
-    'http://lorempixel.com/253/169/sports/2',
-    'http://lorempixel.com/253/169/sports/3',
-    'http://lorempixel.com/253/169/sports/6',
-    'http://lorempixel.com/253/169/sports/5'
-  ]
-
-  const vtree$ = xs.of(imageUrls)
+  const vtree$ = sources.MediaUrls
     .map(urls =>
       div('.row', 
         urls.map(url => 

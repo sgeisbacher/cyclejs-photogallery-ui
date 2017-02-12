@@ -2,9 +2,17 @@ import {div, h1} from '@cycle/dom'
 import xs from 'xstream'
 import {ListMedias} from './list-medias.js'
   
+const mediaUrls = [
+    'http://lorempixel.com/253/169/sports/1',
+    'http://lorempixel.com/253/169/sports/2',
+    'http://lorempixel.com/253/169/sports/3',
+    'http://lorempixel.com/253/169/sports/6',
+    'http://lorempixel.com/253/169/sports/5'
+]
+  
 export function App(sources) {
   const gallery = ListMedias({
-    DOM: sources.DOM
+    MediaUrls: xs.of(mediaUrls)
   });
 
   const galleryVDom$ = gallery.DOM;
